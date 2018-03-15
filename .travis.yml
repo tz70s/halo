@@ -1,0 +1,16 @@
+language: c
+compiler: gcc
+
+# TODO: Should move this into integrated build.
+before_install:
+  - ./tools/solo5.sh
+
+install:
+  - make
+
+script:
+  - make test
+
+notifications:
+  email:
+    on_success: never
