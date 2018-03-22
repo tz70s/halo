@@ -3,9 +3,6 @@
 # The Halo project is licensed under MIT License.
 # Checkout LICENSE file in the root of source tree.
 
-# TODO: Currently, this is based on seperated building.
-# Refactor this into $(MAKE) -C
-
 SOLO5_DIR=vendor/solo5
 SOLO5_KERNEL_DIR=$(SOLO5_DIR)/kernel
 SOLO5_OBJFILES=$(SOLO5_KERNEL_DIR)/lib.o \
@@ -34,7 +31,7 @@ $(BUILD)/halo.virtio: $(OBJFILES) $(SOLO5_OBJFILES)
 $(BUILD)/%.o: $(SOURCE)/%.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-pre_build:
+pre_build: pre_build_solo5
 	@mkdir -p build
 
 test:
